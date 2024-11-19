@@ -1,8 +1,30 @@
-               }
-                // iFrameのsrcを変更してURLを読み込む
-                document.getElementById('iframe').src = url;
-            }
-        }
-    </script>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索と機能</title>
+    <link rel="stylesheet" href="styles.css"> <!-- CSSファイルをリンク -->
+</head>
+<body>
+    <div class="search-bar-container">
+        <!-- URL入力フォーム -->
+        <input type="text" id="url-input" class="url-bar" placeholder="URLを入力（例: https://www.google.com）" onkeydown="if(event.key === 'Enter') { loadUrl(); }">
+        
+        <!-- 機能ボタン -->
+        <div class="search-buttons">
+            <button class="button" onclick="showComingSoon()">≡</button>
+            <button class="button" onclick="showComingSoon()">⚙</button>
+            <button class="button" onclick="showComingSoon()">☰</button>
+        </div>
+    </div>
+    
+    <!-- 「作成途中」の表示 -->
+    <div class="coming-soon" id="coming-soon">機能は作成途中です。</div>
+
+    <!-- iFrame -->
+    <iframe id="iframe" src=""></iframe>
+
+    <script src="script.js"></script> <!-- JSファイルをリンク -->
 </body>
-</html> 
+</html>
