@@ -3,18 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google in iFrame</title>
+    <title>URL入力画面</title>
     <style>
-        /* iFrameのスタイル設定 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
         iframe {
             width: 100%;
-            height: 100vh; /* ビューポートの高さに合わせる */
+            height: 80vh; /* 残りの高さを使ってiFrameを表示 */
             border: none;
-            display: block;
+        }
+        .url-bar {
+            margin: 10px 0;
+            padding: 5px;
+            width: 90%;
+            max-width: 600px;
+            font-size: 16px;
         }
     </style>
 </head>
-<body style="margin:0; overflow:hidden;">
-    <iframe src="https://yahoo.com"></iframe>
+<body>
+    <h1>アクセスしたいURLを入力してください</h1>
+    <!-- URL入力フォーム -->
+    <input type="text" id="url-input" class="url-bar" placeholder="URLを入力（例: https://www.google.com）" />
+    <button onclick="loadUrl()">アクセス</button>
+    
+    <iframe id="iframe" src=""></iframe>
+
+    <script>
+        function loadUrl() {
+            var url = document.getElementById('url-input').value;
+            // 入力されたURLが空でないか確認
+            if (url) {
+                // URLがhttpで始まらない場合、https://を付け加える
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    url = 'https://' + url;
+                }
+                // iFrameのsrcを変更してURLを読み込む
+                document.getElementById('iframe').src = url;
+            }
+        }
+    </script>
 </body>
 </html>
