@@ -17,3 +17,4 @@ function showComingSoon() {
         document.getElementById('coming-soon').style.display = 'none';
     }, 3000); // 3秒後に非表示にする
 }
+ 
