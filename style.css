@@ -1,0 +1,68 @@
+/* ベーススタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* 検索バー */
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+}
+.url-bar {
+    width: 70%;
+    max-width: 600px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+}
+.url-bar:focus {
+    border-color: #4CAF50;
+}
+.search-buttons {
+    display: flex;
+    margin-left: 10px;
+    gap: 10px;
+}
+.button {
+    width: 30px;
+    height: 30px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+.button:hover {
+    background-color: #45a049;
+}
+
+/* iFrame */
+iframe {
+    width: 100%;
+    height: 80vh;
+    border: none;
+    display: block;
+}
+
+/* 「作成途中」の表示 */
+.coming-soon {
+    font-size: 20px;
+    color: #f44336;
+    margin-top: 20px;
+    display: none;
+}
