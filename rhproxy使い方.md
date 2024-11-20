@@ -1,4 +1,4 @@
-### 使い方
+# 使い方
 1. まず、[こちら](https://rh.dyhack.net/)を開きます。
 2. 開くと「Welcome! Rammerhead〜」とでます。+ を押し、タブを開きます。
 3. 下に行くと URLバーがあるので、そこに入りたいサイトのURLを入力します。(例:https://google.com)
