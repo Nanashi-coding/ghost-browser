@@ -1,13 +1,13 @@
 # Ghost-Browser
 Ghost BrowserはiPhoneやChromebbookの制限をすり抜けられるブラウザです。
 ## 使い方 Chromebook ver
-1. まず、[こちら](https://s.dyhack.net/gbrowser)を開きファイルをダウンロードしてください。
+1. まず、[こちら](https://s.dyhack.net/gb-c)を開きファイルをダウンロードしてください。
 2. 次に、ファイルアプリを開きます。
 3. 最近使用したアイテムを押します。
 4. その中に index.html というファイルが見つけられたら、2回クリックします。
 5. file:///media/fuse/xxx/root/index.html というファイルが開かれたら成功です。
 ## 使い方 iPhone ver
-1. まず、[こちら](https://d.kuku.lu/8mxystyta)を開き、ファイルをダウンロードしてください。
+1. まず、[こちら](https://s.dyhack.net/gb-i)を開き、ファイルをダウンロードしてください。
 2. ダウンロードボタンを押すと「構成ファイルの構成を〜」と言われますが、許可を押してください。
 3. そうしたら、設定を開きます。
 4. 開いたら、「ダウンロード済みのプロファイル」があるのでそれを押します。
