@@ -1,5 +1,5 @@
 # Ghost-Browser
-Ghost BrowserはiPhoneやChromebbookの制限をすり抜けられるブラウザです。
+Ghost BrowserはiPhoneやChromebbookの制限をすり抜けられるウェブブラウザです。
 ## 使い方 Chromebook ver
 1. まず、[こちら](https://s.dyhack.net/gb-c)を開きファイルをダウンロードしてください。
 2. 次に、ファイルアプリを開きます。
@@ -16,7 +16,7 @@ Ghost BrowserはiPhoneやChromebbookの制限をすり抜けられるブラウ�
 7. そうしたら、「このファイルは署名されていません」とでますが、インストールを押してください。
 8. もう一回「インストール」を押します。
 9. インストールが完了するとホーム画面に「Ghost Browser」というアプリがあったら成功です。
-### 注意
+## 注意
 • googleなどのサービスはiframeの適用を禁止しているので、一部サイトでは正常に開くことはできない可能性があります。
 そのため、代用として[こちら](https://rh.dyhack.net/)のサイトを使用してください。使い方は[rhproxy使い方.txt]を見てください。
 
