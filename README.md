@@ -6,4 +6,6 @@ Ghost BrowserはiPhoneやChromebbookの制限をすり抜けられるブラウ�
 3. 最近使用したアイテムを押します。
 4. その中に index.html というファイルが見つけられたら、2回クリックします。
 5. file:///media/fuse/xxx/root/index.html というファイルが開かれたら成功です。
-##   
+## 使い方 iPhone ver
+作成途中...
+### 注意
