@@ -9,9 +9,9 @@
     <key>PayloadIdentifier</key>
     <string>com.example.webclip</string>
     <key>PayloadUUID</key>
-    <string>8d25ed78-2468-4971-be36-de7cd98983c7</string>
+    <string>8d25ed78-2468-4971-be36-de7cd98983c7</string> //uuidを設定
     <key>PayloadDisplayName</key>
-    <string>Ghost Browser</string>
+    <string>Ghost Browser</string> //アプリの名前を設定
     <key>PayloadContent</key>
     <array>
         <dict>
@@ -20,13 +20,13 @@
             <key>IsRemovable</key>
             <true/>
             <key>Label</key>
-            <string>Ghost browser</string>
+            <string>Ghost browser</string> //アプリの名前を設定
             <key>PayloadType</key>
             <string>com.apple.webClip.managed</string>
             <key>PayloadIdentifier</key>
             <string>com.example.webclip.custombrowser</string>
             <key>PayloadUUID</key>
-            <string>8d25ed78-2468-4971-be36-de7cd98983c8</string>
+            <string>8d25ed78-2468-4971-be36-de7cd98983c8</string> //uuidを設定
             <key>PayloadVersion</key>
             <integer>1</integer>
             <key>Precomposed</key>
