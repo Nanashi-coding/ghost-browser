@@ -15,7 +15,7 @@
 
         .search-bar-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             background-color: white;
             padding: 10px;
@@ -23,7 +23,7 @@
         }
 
         .url-bar {
-            width: 70%;
+            width: 60%;
             max-width: 600px;
             padding: 10px;
             font-size: 16px;
@@ -31,15 +31,17 @@
             border-radius: 20px;
             outline: none;
         }
+
         .url-bar:focus {
             border-color: #4CAF50;
         }
 
         .search-buttons {
             display: flex;
-            margin-left: 10px;
+            gap: 10px;
             position: relative;
         }
+
         .button {
             width: 30px;
             height: 30px;
@@ -54,11 +56,11 @@
             align-items: center;
             transition: background-color 0.3s;
         }
+
         .button:hover {
             background-color: #45a049;
         }
 
-        /* プルダウンメニュー */
         .dropdown {
             position: absolute;
             top: 40px;
@@ -69,6 +71,7 @@
             display: none;
             z-index: 100;
         }
+
         .dropdown a {
             display: block;
             padding: 10px;
@@ -77,71 +80,79 @@
             font-size: 14px;
             border-bottom: 1px solid #ddd;
         }
+
         .dropdown a:hover {
             background-color: #f0f0f0;
         }
+
         .dropdown a:last-child {
             border-bottom: none;
         }
 
         iframe {
+            border: none;
             width: 100%;
             height: 80vh;
-            border: none;
-            display: block;
+            transition: transform 0.3s ease;
         }
 
-        .credits, .datetime, .speed {
-            margin: 10px 0;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .resize-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 10px 0;
-        }
-        .resize-buttons button {
-            padding: 5px 10px;
-            font-size: 14px;
+        .info-container, .credits-container {
+            display: none;
+            margin: 20px auto;
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            background-color: #fff;
+            text-align: left;
+            font-size: 14px;
         }
-        .resize-buttons button:hover {
-            background-color: #f0f0f0;
+
+        .info-container p, .credits-container p {
+            margin: 5px 0;
+        }
+
+        .current-datetime {
+            font-size: 14px;
+            color: #555;
+            text-align: right;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
+    <!-- 現在日時の表示 -->
+    <div class="current-datetime" id="current-datetime">現在時刻: 取得中...</div>
+
     <div class="search-bar-container">
         <input type="text" id="url-input" class="url-bar" placeholder="URLを入力（例: https://www.google.com）" onkeydown="if(event.key === 'Enter') { loadUrl(); }">
         
         <div class="search-buttons">
             <button class="button" onclick="toggleDropdown()">☰</button>
             <div class="dropdown" id="dropdown-menu">
-                <a href="https://github.com/nanashi-coding/ghost-browser" target="_blank">クレジット</a>
-                <a href="#" onclick="resizeIframe('zoomIn')">拡大 (+)</a>
-                <a href="#" onclick="resizeIframe('zoomOut')">縮小 (-)</a>
-                <a href="#" id="current-datetime">現在の日時: --:--</a>
-                <a href="#" onclick="measureSpeed()">現在の速度: 測定中...</a>
-                <a href="#">広告ブロッカー (追加予定)</a>
+                <a href="#" onclick="toggleInfo()">詳細情報</a>
+                <a href="#" onclick="toggleCredits()">クレジット</a>
             </div>
+            <button class="button" onclick="zoomIframe(-0.1)">−</button>
+            <button class="button" onclick="zoomIframe(0.1)">＋</button>
         </div>
     </div>
     
     <iframe id="iframe" src=""></iframe>
 
-    <div class="resize-buttons">
-        <button onclick="resizeIframe('zoomIn')">拡大 (+)</button>
-        <button onclick="resizeIframe('zoomOut')">縮小 (-)</button>
+    <div class="info-container" id="info-container">
+        <h3>詳細情報</h3>
+        <p id="ip-info">IPアドレス: 取得中...</p>
+        <p id="location-info">場所: 取得中...</p>
+        <p id="device-info">デバイス情報: 取得中...</p>
     </div>
-    <div class="credits">作成者: Nanashi, Ryo-v2 | ソースコード: <a href="https://github.com/nanashi-coding/ghost-browser" target="_blank">GitHub</a></div>
-    <div class="datetime" id="datetime-display">現在の日時: --:--</div>
-    <div class="speed" id="speed-display">現在の速度: -- Mbps</div>
+
+    <div class="credits-container" id="credits-container">
+        <h3>クレジット</h3>
+        <p>作成者: Nanashi, Ryo-v2</p>
+        <p>ソースコード: <a href="https://github.com/nanashi-coding/ghost-browser" target="_blank">GitHub</a></p>
+    </div>
 
     <script>
         function loadUrl() {
@@ -157,33 +168,55 @@
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
         }
 
-        let zoomLevel = 1;
-        function resizeIframe(action) {
+        function toggleInfo() {
+            const info = document.getElementById('info-container');
+            info.style.display = info.style.display === 'block' ? 'none' : 'block';
+            if (info.style.display === 'block') fetchDetails();
+        }
+
+        function toggleCredits() {
+            const credits = document.getElementById('credits-container');
+            credits.style.display = credits.style.display === 'block' ? 'none' : 'block';
+        }
+
+        async function fetchDetails() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+
+                document.getElementById('ip-info').textContent = `IPアドレス: ${data.ip}`;
+                document.getElementById('location-info').textContent = `場所: ${data.city}, ${data.region}, ${data.country_name}`;
+                document.getElementById('device-info').textContent = `デバイス情報: ${navigator.userAgent}`;
+            } catch (error) {
+                document.getElementById('ip-info').textContent = 'IPアドレス: 取得失敗';
+                document.getElementById('location-info').textContent = '場所: 取得失敗';
+                document.getElementById('device-info').textContent = 'デバイス情報: 取得失敗';
+            }
+        }
+
+        function zoomIframe(scaleStep) {
             const iframe = document.getElementById('iframe');
-            if (action === 'zoomIn') zoomLevel += 0.1;
-            if (action === 'zoomOut' && zoomLevel > 0.1) zoomLevel -= 0.1;
-            iframe.style.transform = `scale(${zoomLevel})`;
-            iframe.style.transformOrigin = 'top center';
+            const currentScale = parseFloat(iframe.style.transform.replace(/[^0-9.]/g, '')) || 1;
+            const newScale = Math.max(0.5, Math.min(currentScale + scaleStep, 2)); // 0.5倍～2倍まで制限
+            iframe.style.transform = `scale(${newScale})`;
         }
 
-        function updateDatetime() {
+        function updateCurrentDatetime() {
             const now = new Date();
-            const formatted = now.toLocaleString('ja-JP', { hour12: false });
-            document.getElementById('datetime-display').textContent = `現在の日時: ${formatted}`;
-            document.getElementById('current-datetime').textContent = `現在の日時: ${formatted}`;
+            const formatted = now.toLocaleString('ja-JP', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('current-datetime').textContent = `現在時刻: ${formatted}`;
         }
-        setInterval(updateDatetime, 1000);
 
-        function measureSpeed() {
-            const startTime = new Date().getTime();
-            const img = new Image();
-            img.src = 'https://www.google.com/images/phd/px.gif?t=' + startTime;
-            img.onload = () => {
-                const endTime = new Date().getTime();
-                const speed = (150 / ((endTime - startTime) / 1000)).toFixed(2); // 仮の速度計算
-                document.getElementById('speed-display').textContent = `現在の速度: ${speed} Mbps`;
-            };
-        }
+        // 初期化
+        setInterval(updateCurrentDatetime, 1000); // 1秒ごとに現在時刻を更新
+        updateCurrentDatetime();
     </script>
 </body>
 </html>
