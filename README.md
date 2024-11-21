@@ -24,5 +24,5 @@ Ghost BrowserはiPhoneやChromebbookの制限をすり抜けられるウェブ�
 ## クレジット
 作成者
 • Nanashi 
-• Ryo-b2
+• Ryo-v2
 
