@@ -1,6 +1,6 @@
 # Ghost-Browser
 Ghost BrowserはiPhone(iOS)やChromebbookの時間制限をすり抜けられるウェブブラウザです。iPhoneでは、ブロック回避をすることもできます。
-## 使い方 Chromebook ver
+## 使い方 Chromebook ver (失敗)
 1. まず、[こちら](https://s.dyhack.net/gb-c)を開きファイルをダウンロードしてください。
 2. 次に、ファイルアプリを開きます。
 3. 最近使用したアイテムを押します。
